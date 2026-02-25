@@ -1,17 +1,1332 @@
 ---
-
+// src/pages/index.astro
+// Replace placeholder paths with your actual image files in /public/images/
 ---
-
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Stitch Studio — Sewing, Alterations & Repairs</title>
+  <meta name="description" content="Handmade with love. Custom sewing, alterations, and repairs by a passionate maker." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --strawberry:      #f2436a;
+      --strawberry-lt:   #f7738f;
+      --strawberry-pale: #fde8ed;
+      --strawberry-deep: #c02d50;
+      --honey:           #f5c842;
+      --honey-pale:      #fef8dc;
+      --mint:            #a8dbc5;
+      --mint-pale:       #e6f7f1;
+      --paper:           #fef9f0;
+      --warm-white:      #fff8f2;
+      --ink:             #2d1a1f;
+      --ink-soft:        #5c3d45;
+      --font-hand:   'Caveat', cursive;
+      --font-body:   'Nunito', sans-serif;
+      --font-serif:  'Playfair Display', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ───────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2.5rem;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    nav.scrolled {
+      background: rgba(254,249,240,0.96);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 0 var(--strawberry-pale), 0 3px 12px rgba(242,67,106,0.08);
+    }
+
+    .nav-logo {
+      font-family: var(--font-hand);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--strawberry);
+      display: inline-block;
+      transform: rotate(-1.5deg);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.4rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--ink);
+      padding: 0.4rem 1.1rem;
+      border-radius: 999px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .nav-links a:hover {
+      background: var(--strawberry);
+      color: white;
+    }
+
+    /* ── HERO ──────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding-top: 5rem;
+      background: var(--strawberry-pale);
+    }
+
+    /* Big blob */
+    .hero-blob {
+      position: absolute;
+      top: -8%;
+      right: -4%;
+      width: 62%;
+      height: 115%;
+      background: var(--strawberry);
+      border-radius: 42% 58% 53% 47% / 47% 52% 48% 53%;
+      z-index: 0;
+    }
+
+    /* Honey dot */
+    .hero-dot {
+      position: absolute;
+      bottom: 8%;
+      left: 6%;
+      width: 160px;
+      height: 160px;
+      background: var(--honey);
+      border-radius: 50%;
+      opacity: 0.4;
+      z-index: 0;
+    }
+
+    /* Mint dot */
+    .hero-dot-2 {
+      position: absolute;
+      top: 15%;
+      left: 3%;
+      width: 80px;
+      height: 80px;
+      background: var(--mint);
+      border-radius: 50%;
+      opacity: 0.5;
+      z-index: 0;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 3rem;
+      width: 100%;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: var(--honey);
+      color: var(--ink);
+      font-family: var(--font-hand);
+      font-size: 1.15rem;
+      font-weight: 700;
+      padding: 0.3rem 1.1rem;
+      border-radius: 999px;
+      border: 2.5px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
+      margin-bottom: 1.5rem;
+      transform: rotate(-1.5deg);
+    }
+
+    .hero-title {
+      font-family: var(--font-hand);
+      font-size: clamp(3.2rem, 6vw, 5.8rem);
+      font-weight: 700;
+      line-height: 1.0;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title .hl {
+      color: var(--strawberry);
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-title .hl::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: -3px;
+      right: -3px;
+      height: 9px;
+      background: var(--honey);
+      z-index: -1;
+      border-radius: 4px;
+      opacity: 0.85;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--ink-soft);
+      font-weight: 600;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-family: var(--font-body);
+      font-weight: 800;
+      font-size: 0.9rem;
+      padding: 0.85rem 2rem;
+      border-radius: 999px;
+      border: 3px solid var(--ink);
+      box-shadow: 4px 4px 0 var(--ink);
+      transition: transform 0.15s, box-shadow 0.15s;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--ink);
+    }
+
+    .btn-pink { background: var(--strawberry); color: white; }
+    .btn-white { background: white; color: var(--ink); }
+    .btn-white:hover { background: var(--honey-pale); }
+
+    /* Hero image */
+    .hero-img-wrap { position: relative; }
+
+    .hero-img-frame {
+      position: relative;
+      border: 4px solid var(--ink);
+      border-radius: 8px 26px 10px 24px / 24px 10px 26px 8px;
+      overflow: hidden;
+      box-shadow: 8px 8px 0 var(--ink);
+      background: var(--mint-pale);
+      aspect-ratio: 4/5;
+    }
+
+    .hero-img-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .sticker {
+      position: absolute;
+      font-family: var(--font-hand);
+      font-weight: 700;
+      background: white;
+      border: 3px solid var(--ink);
+      padding: 0.4rem 0.85rem;
+      border-radius: 4px 14px 6px 16px / 14px 4px 16px 6px;
+      box-shadow: 3px 3px 0 var(--ink);
+      z-index: 5;
+      white-space: nowrap;
+      line-height: 1.1;
+    }
+
+    .s1 { top: -16px; right: 18px; background: var(--honey); font-size: 1rem; transform: rotate(3deg); }
+    .s2 { bottom: 18px; left: -18px; background: var(--strawberry); color: white; font-size: 0.95rem; transform: rotate(-4deg); }
+    .s3 { top: 45%; right: -22px; background: var(--mint); font-size: 0.9rem; transform: rotate(2deg) translateY(-50%); }
+
+    /* ── MARQUEE ───────────────────────────────── */
+    .marquee-strip {
+      background: var(--strawberry);
+      border-top: 3px solid var(--ink);
+      border-bottom: 3px solid var(--ink);
+      padding: 0.8rem 0;
+      overflow: hidden;
+      position: relative;
+      z-index: 10;
+    }
+
+    .marquee-track {
+      display: flex;
+      animation: marquee 24s linear infinite;
+      width: max-content;
+    }
+
+    .marquee-item {
+      font-family: var(--font-hand);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: white;
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .marquee-item::after { content: '✂'; color: var(--honey); font-size: 1rem; }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── SHARED SECTION STYLES ─────────────────── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 3rem;
+    }
+
+    .kicker {
+      display: block;
+      font-family: var(--font-hand);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--strawberry);
+      margin-bottom: 0.4rem;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.9rem, 3.5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--strawberry);
+    }
+
+    /* wavy section transition */
+    .wave-top {
+      width: 100%;
+      line-height: 0;
+    }
+
+    /* ── ABOUT ─────────────────────────────────── */
+    #about {
+      padding: 5rem 0 6rem;
+      background: var(--warm-white);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-body p {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      font-weight: 600;
+      line-height: 1.75;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-quote {
+      margin: 1.75rem 0;
+      padding: 1.2rem 1.5rem;
+      background: var(--strawberry-pale);
+      border-left: 5px solid var(--strawberry);
+      border-radius: 0 12px 12px 0;
+      font-family: var(--font-hand);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--strawberry-deep);
+      line-height: 1.4;
+    }
+
+    .fun-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+    }
+
+    .chip {
+      background: var(--honey-pale);
+      border: 2.5px solid var(--honey);
+      border-radius: 999px;
+      padding: 0.28rem 0.9rem;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .about-sig {
+      font-family: var(--font-hand);
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-top: 2rem;
+    }
+
+    /* Photo side */
+    .about-photo-wrap { position: relative; }
+
+    .about-frame {
+      border: 4px solid var(--ink);
+      border-radius: 6px 22px 8px 20px / 20px 8px 22px 6px;
+      overflow: hidden;
+      box-shadow: 7px 7px 0 var(--strawberry);
+      aspect-ratio: 3/4;
+      background: var(--strawberry-pale);
+    }
+
+    .about-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .about-note {
+      position: absolute;
+      bottom: -16px;
+      right: -16px;
+      background: var(--honey);
+      border: 3px solid var(--ink);
+      border-radius: 4px;
+      padding: 0.5rem 0.9rem;
+      font-family: var(--font-hand);
+      font-size: 1.1rem;
+      font-weight: 700;
+      transform: rotate(4deg);
+      box-shadow: 3px 3px 0 var(--ink);
+      z-index: 5;
+    }
+
+    .about-pin {
+      position: absolute;
+      top: -16px;
+      left: -16px;
+      background: var(--mint);
+      border: 3px solid var(--ink);
+      border-radius: 50%;
+      width: 58px;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 3px 3px 0 var(--ink);
+      z-index: 5;
+      transform: rotate(-6deg);
+    }
+
+    /* ── SERVICES ──────────────────────────────── */
+    #services {
+      padding: 5rem 0 6rem;
+      background: var(--strawberry-pale);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Dots pattern */
+    #services::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(242,67,106,0.08) 2px, transparent 2px);
+      background-size: 30px 30px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .services-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .svc-card {
+      background: white;
+      border: 3px solid var(--ink);
+      border-radius: 4px 18px 6px 16px / 16px 4px 18px 6px;
+      padding: 2rem 1.75rem;
+      box-shadow: 5px 5px 0 var(--ink);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .svc-card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 var(--ink);
+    }
+
+    .svc-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+    }
+
+    .svc-card:nth-child(1)::before { background: var(--strawberry); }
+    .svc-card:nth-child(2)::before { background: var(--honey); }
+    .svc-card:nth-child(3)::before { background: var(--mint); }
+    .svc-card:nth-child(4)::before { background: var(--mint); }
+    .svc-card:nth-child(5)::before { background: var(--strawberry); }
+    .svc-card:nth-child(6)::before { background: var(--honey); }
+
+    .svc-icon { font-size: 2.2rem; display: block; margin-bottom: 1rem; line-height: 1; }
+
+    .svc-name {
+      font-family: var(--font-hand);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+    }
+
+    .svc-desc {
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      line-height: 1.65;
+      font-weight: 600;
+    }
+
+    /* ── GALLERY ───────────────────────────────── */
+    #gallery {
+      padding: 5rem 0 4rem;
+      background: var(--paper);
+    }
+
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    /* Polaroid layout */
+    .polaroids {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    .polaroid {
+      background: white;
+      border: 2px solid #e0d5cc;
+      padding: 0.75rem 0.75rem 2.75rem;
+      box-shadow: 3px 5px 14px rgba(45,26,31,0.12);
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: zoom-in;
+    }
+
+    .polaroid:nth-child(1) { transform: rotate(-2deg); }
+    .polaroid:nth-child(2) { transform: rotate(1.5deg); }
+    .polaroid:nth-child(3) { transform: rotate(-1deg); }
+    .polaroid:nth-child(4) { transform: rotate(2.5deg); }
+    .polaroid:nth-child(5) { transform: rotate(1deg); }
+    .polaroid:nth-child(6) { transform: rotate(-2.5deg); }
+    .polaroid:nth-child(7) { transform: rotate(1.5deg); }
+
+    .polaroid:hover {
+      transform: rotate(0deg) scale(1.05) translateY(-8px) !important;
+      box-shadow: 8px 14px 32px rgba(45,26,31,0.22);
+      z-index: 10;
+      position: relative;
+    }
+
+    .polaroid-featured {
+      grid-column: span 2;
+    }
+
+    .polaroid-featured .pol-photo {
+      aspect-ratio: 2/1.1;
+    }
+
+    .pol-photo {
+      width: 100%;
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: var(--strawberry-pale);
+    }
+
+    .pol-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .pol-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-hand);
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      text-align: center;
+      padding: 1rem;
+      font-weight: 600;
+    }
+
+    .pol-caption {
+      margin-top: 0.6rem;
+      font-family: var(--font-hand);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ink-soft);
+      text-align: center;
+    }
+
+    /* ── TEXTURE STRIP ─────────────────────────── */
+    .tex-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      height: 220px;
+      border-top: 3px solid var(--ink);
+      border-bottom: 3px solid var(--ink);
+    }
+
+    .tex-item {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .tex-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .tex-item:hover img { transform: scale(1.07); }
+
+    .tex-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-hand);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink-soft);
+    }
+
+    .tex-item:nth-child(1) .tex-placeholder { background: linear-gradient(135deg, #fde8ed, #f7738f); }
+    .tex-item:nth-child(2) .tex-placeholder { background: linear-gradient(135deg, #fef8dc, #f5c842); }
+    .tex-item:nth-child(3) .tex-placeholder { background: linear-gradient(135deg, #e6f7f1, #a8dbc5); }
+
+    /* ── PROCESS ───────────────────────────────── */
+    #process {
+      padding: 5rem 0 6rem;
+      background: var(--honey-pale);
+    }
+
+    .process-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 39px;
+      left: 12%;
+      right: 12%;
+      height: 3px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--strawberry) 0,
+        var(--strawberry) 12px,
+        transparent 12px,
+        transparent 22px
+      );
+      z-index: 0;
+    }
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-num {
+      width: 80px;
+      height: 80px;
+      border-radius: 50% 50% 50% 50% / 58% 58% 42% 42%;
+      border: 3px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-hand);
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    .step:nth-child(1) .step-num { background: var(--strawberry); color: white; }
+    .step:nth-child(2) .step-num { background: var(--honey); color: var(--ink); }
+    .step:nth-child(3) .step-num { background: var(--mint); color: var(--ink); }
+    .step:nth-child(4) .step-num { background: var(--strawberry-lt); color: white; }
+
+    .step:hover .step-num { transform: scale(1.12) rotate(-5deg); }
+
+    .step-title {
+      font-family: var(--font-hand);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .step-desc {
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+    /* ── CONTACT ───────────────────────────────── */
+    #contact {
+      padding: 5rem 0 6rem;
+      background: var(--warm-white);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contact-tagline {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      font-weight: 600;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .contact-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .cc {
+      background: white;
+      border: 3px solid var(--ink);
+      border-radius: 4px 14px 4px 14px / 14px 4px 14px 4px;
+      padding: 0.9rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 3px 3px 0 var(--strawberry);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .cc:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0 var(--strawberry);
+    }
+
+    .cc-icon { font-size: 1.6rem; flex-shrink: 0; }
+
+    .cc-label {
+      font-family: var(--font-hand);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--strawberry);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    .cc-val {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--ink);
+    }
+
+    .cc-val a:hover { color: var(--strawberry); }
+
+    /* Form */
+    .contact-form {
+      background: white;
+      border: 3px solid var(--ink);
+      border-radius: 8px 24px 10px 22px / 22px 10px 24px 8px;
+      padding: 2.5rem;
+      box-shadow: 6px 6px 0 var(--strawberry);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form-heading {
+      font-family: var(--font-hand);
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--ink);
+      text-align: center;
+      margin-bottom: 0.25rem;
+    }
+
+    .form-field { display: flex; flex-direction: column; gap: 0.4rem; }
+
+    .form-label {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--ink);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .form-input,
+    .form-textarea {
+      border: 2.5px solid var(--ink);
+      border-radius: 6px 16px 8px 14px / 14px 6px 16px 8px;
+      padding: 0.75rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink);
+      background: var(--paper);
+      outline: none;
+      width: 100%;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: var(--strawberry);
+      background: var(--strawberry-pale);
+    }
+
+    .form-textarea { min-height: 110px; resize: vertical; }
+
+    .form-btn {
+      background: var(--strawberry);
+      color: white;
+      border: 3px solid var(--ink);
+      border-radius: 999px;
+      padding: 0.9rem 2rem;
+      font-family: var(--font-body);
+      font-weight: 800;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 var(--ink);
+      transition: transform 0.15s, box-shadow 0.15s;
+      align-self: flex-start;
+    }
+
+    .form-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--ink);
+    }
+
+    /* ── FOOTER ────────────────────────────────── */
+    footer {
+      background: var(--ink);
+      padding: 2.5rem 3rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .footer-brand {
+      font-family: var(--font-hand);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--strawberry-lt);
+    }
+
+    .footer-hearts { color: var(--strawberry-lt); font-size: 1rem; letter-spacing: 0.35em; }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+      font-weight: 600;
+    }
+
+    /* ── SCROLL REVEAL ─────────────────────────── */
+    .r {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .r.on { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; }
+    .d4 { transition-delay: 0.4s; }
+
+    /* ── RESPONSIVE ────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; padding: 6rem 2rem 3rem; }
+      .hero-blob { display: none; }
+      .hero-img-wrap { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .polaroids { grid-template-columns: repeat(2, 1fr); }
+      .polaroid-featured { grid-column: span 2; }
+      .steps { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .steps::before { display: none; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .container { padding: 0 2rem; }
+      nav { padding: 1rem 1.5rem; }
+    }
+
+    @media (max-width: 640px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .polaroids { grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+      .steps { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .tex-strip { height: 150px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <span class="nav-logo">✂ The Stitch Studio</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-blob"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-dot-2"></div>
+
+    <div class="hero-inner">
+      <div class="hero-text">
+        <span class="hero-tag">🧵 handmade with love</span>
+        <h1 class="hero-title">
+          Sewing<br>
+          that <span class="hl">fits</span><br>
+          your life.
+        </h1>
+        <p class="hero-sub">
+          Custom garments, expert alterations, and loving repairs —<br>
+          made by hand, made for you.
+        </p>
+        <div class="hero-btns">
+          <a href="#gallery" class="btn btn-pink">See My Work ✨</a>
+          <a href="#contact" class="btn btn-white">Get in Touch 👋</a>
+        </div>
+      </div>
+
+      <div class="hero-img-wrap">
+        <div class="hero-img-frame">
+          <!-- Replace src with your hero image: /images/hero.jpg -->
+          <img src="/images/hero.jpg" alt="A handmade garment"
+            onerror="this.style.display='none'" />
+        </div>
+        <div class="sticker s1">made with ♥</div>
+        <div class="sticker s2">one of a kind!</div>
+        <div class="sticker s3">custom fit ✓</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item">Custom Sewing</span>
+      <span class="marquee-item">Alterations</span>
+      <span class="marquee-item">Repairs & Restoration</span>
+      <span class="marquee-item">Bridal Work</span>
+      <span class="marquee-item">Upcycling</span>
+      <span class="marquee-item">Made with Love</span>
+      <span class="marquee-item">Custom Sewing</span>
+      <span class="marquee-item">Alterations</span>
+      <span class="marquee-item">Repairs & Restoration</span>
+      <span class="marquee-item">Bridal Work</span>
+      <span class="marquee-item">Upcycling</span>
+      <span class="marquee-item">Made with Love</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="r">
+          <span class="kicker">✦ a little about me</span>
+          <h2 class="section-title">Hi, I'm <em>[Your Name]!</em></h2>
+          <div class="about-body">
+            <p>
+              I've been sewing since I was tall enough to reach my grandmother's machine
+              (barely!). What started as a childhood obsession turned into a lifelong craft —
+              and now I get to do what I love every single day.
+            </p>
+            <div class="about-quote">
+              "If it's got fabric, a needle, and thread — I'm in my happy place."
+            </div>
+            <p>
+              I'm based in [Your City] and I work with everyone from brides who need the
+              perfect fit, to folks who just want their favorite jeans taken in. No job is
+              too small, and no project is too quirky!
+            </p>
+          </div>
+          <div class="fun-chips">
+            <span class="chip">📍 [Your City]</span>
+            <span class="chip">🪡 Sewing since [year]</span>
+            <span class="chip">👗 Alterations lover</span>
+            <span class="chip">✂ Bridal specialist</span>
+            <span class="chip">🎨 Upcycling fan</span>
+          </div>
+          <div class="about-sig">[Your Name]</div>
+        </div>
+
+        <div class="about-photo-wrap r d2">
+          <div class="about-pin">🪡</div>
+          <div class="about-frame">
+            <!-- Replace src with your portrait: /images/portrait.jpg -->
+            <img src="/images/portrait.jpg" alt="Portrait"
+              onerror="this.outerHTML='<div style=\'width:100%;height:100%;background:linear-gradient(135deg,#fde8ed,#f7738f);\'></div>'" />
+          </div>
+          <div class="about-note">that's me! 👋</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <div class="services-header r">
+        <span class="kicker">✦ what I can do for you</span>
+        <h2 class="section-title">My <em>Services</em></h2>
+      </div>
+      <div class="services-grid">
+        <div class="svc-card r">
+          <span class="svc-icon">✂️</span>
+          <h3 class="svc-name">Custom Garments</h3>
+          <p class="svc-desc">Designed and made from scratch — entirely to your measurements and style. Dresses, trousers, blouses — whatever you dream up!</p>
+        </div>
+        <div class="svc-card r d1">
+          <span class="svc-icon">🧵</span>
+          <h3 class="svc-name">Alterations & Tailoring</h3>
+          <p class="svc-desc">Hems, waist adjustments, sleeve shortening, taking in or letting out. If it doesn't fit just right, we'll fix it!</p>
+        </div>
+        <div class="svc-card r d2">
+          <span class="svc-icon">🪡</span>
+          <h3 class="svc-name">Repairs & Restoration</h3>
+          <p class="svc-desc">Zippers, torn seams, fraying edges, missing buttons. I love bringing beloved clothes back to life.</p>
+        </div>
+        <div class="svc-card r">
+          <span class="svc-icon">💍</span>
+          <h3 class="svc-name">Bridal & Occasion Wear</h3>
+          <p class="svc-desc">Wedding gowns, bridesmaid alterations, prom, and special occasions. Your big day deserves a perfect fit!</p>
+        </div>
+        <div class="svc-card r d1">
+          <span class="svc-icon">♻️</span>
+          <h3 class="svc-name">Upcycling & Redesign</h3>
+          <p class="svc-desc">Turn something old into something you'll actually wear! Let's get creative with fabrics you already own.</p>
+        </div>
+        <div class="svc-card r d2">
+          <span class="svc-icon">📐</span>
+          <h3 class="svc-name">Consultations</h3>
+          <p class="svc-desc">Not sure what you need? Let's chat! Bring your clothes, your ideas, or just your questions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="container">
+      <div class="gallery-header r">
+        <span class="kicker">✦ the work</span>
+        <h2 class="section-title">Fresh from the <em>Studio</em></h2>
+      </div>
+
+      <!--
+        Gallery: Replace src with your actual work photos.
+        Files: /images/work-1.jpg through /images/work-7.jpg
+        Edit the polaroid-caption text to describe each piece!
+        The first item (polaroid-featured) spans 2 columns — use a wide/landscape-friendly shot.
+      -->
+      <div class="polaroids">
+        <div class="polaroid polaroid-featured r">
+          <div class="pol-photo">
+            <img src="/images/work-1.jpg" alt="Featured work"
+              onerror="this.outerHTML='<div class=\'pol-placeholder\' style=\'background:var(--strawberry-pale)\'>your fave piece here ✨</div>'" />
+          </div>
+          <p class="pol-caption">a recent favorite ✨</p>
+        </div>
+
+        <div class="polaroid r d1">
+          <div class="pol-photo">
+            <img src="/images/work-2.jpg" alt="Work 2"
+              onerror="this.outerHTML='<div class=\'pol-placeholder\' style=\'background:var(--honey-pale)\'>piece no. 02</div>'" />
+          </div>
+          <p class="pol-caption">custom fit!</p>
+        </div>
+
+        <div class="polaroid r d2">
+          <div class="pol-photo">
+            <img src="/images/work-3.jpg" alt="Work 3"
+              onerror="this.outerHTML='<div class=\'pol-placeholder\' style=\'background:var(--mint-pale)\'>piece no. 03</div>'" />
+          </div>
+          <p class="pol-caption">so fun to make</p>
+        </div>
+
+        <div class="polaroid r">
+          <div class="pol-photo">
+            <img src="/images/work-4.jpg" alt="Work 4"
+              onerror="this.outerHTML='<div class=\'pol-placeholder\' style=\'background:var(--strawberry-pale)\'>piece no. 04</div>'" />
+          </div>
+          <p class="pol-caption">client fave 💕</p>
+        </div>
+
+        <div class="polaroid r d1">
+          <div class="pol-photo">
+            <img src="/images/work-5.jpg" alt="Work 5"
+              onerror="this.outerHTML='<div class=\'pol-placeholder\' style=\'background:var(--honey-pale)\'>piece no. 05</div>'" />
+          </div>
+          <p class="pol-caption">loved this project</p>
+        </div>
+
+        <div class="polaroid r d2">
+          <div class="pol-photo">
+            <img src="/images/work-6.jpg" alt="Work 6"
+              onerror="this.outerHTML='<div class=\'pol-placeholder\' style=\'background:var(--mint-pale)\'>bridal magic ✨</div>'" />
+          </div>
+          <p class="pol-caption">bridal magic ✨</p>
+        </div>
+
+        <div class="polaroid r d3">
+          <div class="pol-photo">
+            <img src="/images/work-7.jpg" alt="Work 7"
+              onerror="this.outerHTML='<div class=\'pol-placeholder\' style=\'background:var(--strawberry-pale)\'>the detail work!</div>'" />
+          </div>
+          <p class="pol-caption">love the details!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEXTURE STRIP -->
+  <!--
+    3 close-up texture/fabric/macro photos go here.
+    Files: /images/texture-1.jpg, texture-2.jpg, texture-3.jpg
+  -->
+  <div class="tex-strip">
+    <div class="tex-item">
+      <img src="/images/texture-1.jpg" alt="Fabric texture"
+        onerror="this.outerHTML='<div class=\'tex-placeholder\'>the fabric ♡</div>'" />
+    </div>
+    <div class="tex-item">
+      <img src="/images/texture-2.jpg" alt="Stitching detail"
+        onerror="this.outerHTML='<div class=\'tex-placeholder\'>the stitches ♡</div>'" />
+    </div>
+    <div class="tex-item">
+      <img src="/images/texture-3.jpg" alt="Fabric close-up"
+        onerror="this.outerHTML='<div class=\'tex-placeholder\'>the details ♡</div>'" />
+    </div>
+  </div>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="container">
+      <div class="process-header r">
+        <span class="kicker">✦ how it works</span>
+        <h2 class="section-title">From idea to <em>finished piece</em></h2>
+      </div>
+      <div class="steps">
+        <div class="step r">
+          <div class="step-num">1</div>
+          <h3 class="step-title">Say hello!</h3>
+          <p class="step-desc">Reach out by email, phone, or Instagram. Tell me what you're working with!</p>
+        </div>
+        <div class="step r d1">
+          <div class="step-num">2</div>
+          <h3 class="step-title">Let's chat</h3>
+          <p class="step-desc">We'll meet up (or hop on a call) to go over your project, take measurements, and pick fabrics.</p>
+        </div>
+        <div class="step r d2">
+          <div class="step-num">3</div>
+          <h3 class="step-title">I get sewing!</h3>
+          <p class="step-desc">I make your piece with care, keeping you updated and doing a fitting to get it just right.</p>
+        </div>
+        <div class="step r d3">
+          <div class="step-num">4</div>
+          <h3 class="step-title">Pick it up!</h3>
+          <p class="step-desc">Your finished piece is ready — wear it and love it. It was made just for you! 🎉</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="r">
+          <span class="kicker">✦ let's work together</span>
+          <h2 class="section-title">Say <em>hello!</em></h2>
+          <p class="contact-tagline">
+            Got something that needs fixing? A dream outfit in your head? A beloved piece
+            that needs some love? I'd love to hear from you — no project is too big or small!
+          </p>
+          <div class="contact-cards">
+            <div class="cc">
+              <span class="cc-icon">✉️</span>
+              <div>
+                <p class="cc-label">Email</p>
+                <p class="cc-val"><a href="mailto:hello@yourstudio.com">hello@yourstudio.com</a></p>
+              </div>
+            </div>
+            <div class="cc">
+              <span class="cc-icon">📱</span>
+              <div>
+                <p class="cc-label">Phone / Text</p>
+                <p class="cc-val"><a href="tel:+15550000000">(555) 000-0000</a></p>
+              </div>
+            </div>
+            <div class="cc">
+              <span class="cc-icon">📍</span>
+              <div>
+                <p class="cc-label">Based in</p>
+                <p class="cc-val">Your City, State</p>
+              </div>
+            </div>
+            <div class="cc">
+              <span class="cc-icon">📸</span>
+              <div>
+                <p class="cc-label">Instagram</p>
+                <p class="cc-val"><a href="https://instagram.com/yourstudio" target="_blank" rel="noopener">@yourstudio</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="r d2">
+          <!--
+            To make form work:
+            - Netlify: add data-netlify="true" method="POST"
+            - Formspree: action="https://formspree.io/f/YOUR_ID" method="POST"
+          -->
+          <form class="contact-form" action="#" method="POST">
+            <p class="form-heading">📬 drop me a note!</p>
+
+            <div class="form-field">
+              <label class="form-label" for="name">Your Name</label>
+              <input class="form-input" type="text" id="name" name="name" placeholder="Jane Smith" required />
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="email">Email Address</label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="jane@example.com" required />
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="service">What do you need?</label>
+              <input class="form-input" type="text" id="service" name="service" placeholder="Alteration, new dress, repair..." />
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="message">Tell me everything!</label>
+              <textarea class="form-textarea" id="message" name="message" placeholder="Describe your project, ask questions, share inspo pics... I love hearing all the details 🧵"></textarea>
+            </div>
+            <button type="submit" class="form-btn">Send it my way! 🌟</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">✂ The Stitch Studio</div>
+    <div class="footer-hearts">♥ ♥ ♥</div>
+    <p class="footer-copy">© 2025 The Stitch Studio — Handmade with love in [Your City]</p>
+  </footer>
+
+  <script>
+    // Navbar scroll
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+    // Scroll reveal
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -28px 0px' });
+
+    document.querySelectorAll('.r').forEach(el => obs.observe(el));
+  </script>
+</body>
 </html>
