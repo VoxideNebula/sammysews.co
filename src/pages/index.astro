@@ -7,955 +7,979 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Stitch Studio — Sewing, Alterations & Repairs</title>
-  <meta name="description" content="Handmade with love. Custom sewing, alterations, and repairs by a passionate maker." />
+  <title>Studio — Bespoke Tailoring & Alterations</title>
+  <meta name="description" content="Handcrafted clothing, expert alterations, and bespoke repairs with love and precision." />
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <style>
+    /* ─── RESET & BASE ─────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --strawberry:      #f2436a;
-      --strawberry-lt:   #f7738f;
-      --strawberry-pale: #fde8ed;
-      --strawberry-deep: #c02d50;
-      --honey:           #f5c842;
-      --honey-pale:      #fef8dc;
-      --mint:            #a8dbc5;
-      --mint-pale:       #e6f7f1;
-      --paper:           #fef9f0;
-      --warm-white:      #fff8f2;
-      --ink:             #2d1a1f;
-      --ink-soft:        #5c3d45;
-      --font-hand:   'Caveat', cursive;
-      --font-body:   'Nunito', sans-serif;
-      --font-serif:  'Playfair Display', Georgia, serif;
+      --cream:       #f5f0e8;
+      --warm-white:  #faf7f2;
+      --dusty-rose:  #c9a79a;
+      --blush:       #e8cfc5;
+      --plum:        #D26A75;
+      --plum-light:  #5c3347;
+      --gold:        #F6C585;
+      --gold-light:  #FFDBAB;
+      --charcoal:    #2a2020;
+      --text-muted:  #7a6060;
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Libre Baskerville', Georgia, serif;
+      --font-sans:    'Jost', sans-serif;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
 
     body {
-      background: var(--paper);
-      color: var(--ink);
+      background-color: var(--cream);
+      color: var(--charcoal);
       font-family: var(--font-body);
-      font-size: 16px;
-      line-height: 1.65;
+      font-weight: 400;
+      line-height: 1.7;
       overflow-x: hidden;
     }
 
-    img { display: block; max-width: 100%; }
-    a { color: inherit; text-decoration: none; }
+    img {
+      display: block;
+      max-width: 100%;
+    }
 
-    /* ── NAV ───────────────────────────────────── */
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ─── NOISE TEXTURE OVERLAY ────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
+    }
+
+    /* ─── NAV ──────────────────────────────────────────────── */
     nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 2.5rem;
-      transition: background 0.3s, box-shadow 0.3s;
+      padding: 1.5rem 3rem;
+      background: transparent;
+      transition: background 0.4s ease, padding 0.4s ease;
     }
 
     nav.scrolled {
-      background: rgba(254,249,240,0.96);
-      backdrop-filter: blur(8px);
-      box-shadow: 0 2px 0 var(--strawberry-pale), 0 3px 12px rgba(242,67,106,0.08);
+      background: rgba(245, 240, 232, 0.92);
+      backdrop-filter: blur(12px);
+      padding: 1rem 3rem;
+      border-bottom: 1px solid rgba(184, 144, 96, 0.2);
     }
 
     .nav-logo {
-      font-family: var(--font-hand);
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--strawberry);
-      display: inline-block;
-      transform: rotate(-1.5deg);
+      height: 44px;
+      width: auto;
+    }
+
+    /* Fallback text logo if image not found */
+    .nav-logo-text {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--plum);
+      letter-spacing: 0.05em;
     }
 
     .nav-links {
       display: flex;
-      gap: 0.4rem;
+      gap: 2.5rem;
       list-style: none;
     }
 
     .nav-links a {
-      font-family: var(--font-body);
-      font-size: 0.85rem;
-      font-weight: 800;
-      color: var(--ink);
-      padding: 0.4rem 1.1rem;
-      border-radius: 999px;
-      transition: background 0.2s, color 0.2s;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--plum);
+      position: relative;
+      padding-bottom: 2px;
     }
 
-    .nav-links a:hover {
-      background: var(--strawberry);
-      color: white;
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.3s ease;
     }
 
-    /* ── HERO ──────────────────────────────────── */
+    .nav-links a:hover::after { width: 100%; }
+
+    /* ─── HERO ─────────────────────────────────────────────── */
     .hero {
+      position: relative;
       min-height: 100vh;
-      position: relative;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      padding-top: 5rem;
-      background: var(--strawberry-pale);
-    }
-
-    /* Big blob */
-    .hero-blob {
-      position: absolute;
-      top: -8%;
-      right: -4%;
-      width: 62%;
-      height: 115%;
-      background: var(--strawberry);
-      border-radius: 42% 58% 53% 47% / 47% 52% 48% 53%;
-      z-index: 0;
-    }
-
-    /* Honey dot */
-    .hero-dot {
-      position: absolute;
-      bottom: 8%;
-      left: 6%;
-      width: 160px;
-      height: 160px;
-      background: var(--honey);
-      border-radius: 50%;
-      opacity: 0.4;
-      z-index: 0;
-    }
-
-    /* Mint dot */
-    .hero-dot-2 {
-      position: absolute;
-      top: 15%;
-      left: 3%;
-      width: 80px;
-      height: 80px;
-      background: var(--mint);
-      border-radius: 50%;
-      opacity: 0.5;
-      z-index: 0;
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 2;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 4rem 3rem;
-      width: 100%;
+      overflow: hidden;
     }
 
-    .hero-tag {
-      display: inline-block;
-      background: var(--honey);
-      color: var(--ink);
-      font-family: var(--font-hand);
-      font-size: 1.15rem;
-      font-weight: 700;
-      padding: 0.3rem 1.1rem;
-      border-radius: 999px;
-      border: 2.5px solid var(--ink);
-      box-shadow: 3px 3px 0 var(--ink);
+    .hero-left {
+      background-color: var(--plum);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 5rem 6rem 6rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -60px;
+      width: 120px;
+      height: 100%;
+      background: var(--plum);
+      clip-path: polygon(0 0, 100% 0, 60% 100%, 0 100%);
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
       margin-bottom: 1.5rem;
-      transform: rotate(-1.5deg);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
     }
 
     .hero-title {
-      font-family: var(--font-hand);
-      font-size: clamp(3.2rem, 6vw, 5.8rem);
-      font-weight: 700;
-      line-height: 1.0;
-      color: var(--ink);
-      margin-bottom: 1.25rem;
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 6vw, 6rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--cream);
+      margin-bottom: 1rem;
     }
 
-    .hero-title .hl {
-      color: var(--strawberry);
-      position: relative;
-      display: inline-block;
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
     }
 
-    .hero-title .hl::after {
-      content: '';
-      position: absolute;
-      bottom: 2px;
-      left: -3px;
-      right: -3px;
-      height: 9px;
-      background: var(--honey);
-      z-index: -1;
-      border-radius: 4px;
-      opacity: 0.85;
+    .hero-subtitle {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--blush);
+      margin-bottom: 3rem;
+      line-height: 1.5;
     }
 
-    .hero-sub {
-      font-size: 1.05rem;
-      color: var(--ink-soft);
-      font-weight: 600;
-      margin-bottom: 2.5rem;
-      line-height: 1.7;
-    }
-
-    .hero-btns {
-      display: flex;
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
       gap: 1rem;
-      flex-wrap: wrap;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream);
+      border: 1px solid rgba(245, 240, 232, 0.3);
+      padding: 1rem 2rem;
+      transition: all 0.3s ease;
+      width: fit-content;
     }
 
-    .btn {
-      font-family: var(--font-body);
-      font-weight: 800;
-      font-size: 0.9rem;
-      padding: 0.85rem 2rem;
-      border-radius: 999px;
-      border: 3px solid var(--ink);
-      box-shadow: 4px 4px 0 var(--ink);
-      transition: transform 0.15s, box-shadow 0.15s;
-      display: inline-block;
-      cursor: pointer;
+    .hero-cta:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--plum);
+      gap: 1.5rem;
     }
 
-    .btn:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 6px 6px 0 var(--ink);
+    .hero-cta-arrow {
+      font-size: 1rem;
+      transition: transform 0.3s ease;
     }
 
-    .btn-pink { background: var(--strawberry); color: white; }
-    .btn-white { background: white; color: var(--ink); }
-    .btn-white:hover { background: var(--honey-pale); }
+    .hero-cta:hover .hero-cta-arrow {
+      transform: translateX(4px);
+    }
 
-    /* Hero image */
-    .hero-img-wrap { position: relative; }
-
-    .hero-img-frame {
+    .hero-right {
       position: relative;
-      border: 4px solid var(--ink);
-      border-radius: 8px 26px 10px 24px / 24px 10px 26px 8px;
       overflow: hidden;
-      box-shadow: 8px 8px 0 var(--ink);
-      background: var(--mint-pale);
-      aspect-ratio: 4/5;
     }
 
-    .hero-img-frame img {
+    .hero-right img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center top;
+      transition: transform 8s ease;
     }
 
-    .sticker {
+    .hero-right:hover img {
+      transform: scale(1.03);
+    }
+
+    .hero-right::before {
+      content: '';
       position: absolute;
-      font-family: var(--font-hand);
-      font-weight: 700;
-      background: white;
-      border: 3px solid var(--ink);
-      padding: 0.4rem 0.85rem;
-      border-radius: 4px 14px 6px 16px / 14px 4px 16px 6px;
-      box-shadow: 3px 3px 0 var(--ink);
-      z-index: 5;
-      white-space: nowrap;
-      line-height: 1.1;
+      inset: 0;
+      background: linear-gradient(135deg, var(--plum) 0%, transparent 40%);
+      z-index: 1;
+      opacity: 0.4;
     }
 
-    .s1 { top: -16px; right: 18px; background: var(--honey); font-size: 1rem; transform: rotate(3deg); }
-    .s2 { bottom: 18px; left: -18px; background: var(--strawberry); color: white; font-size: 0.95rem; transform: rotate(-4deg); }
-    .s3 { top: 45%; right: -22px; background: var(--mint); font-size: 0.9rem; transform: rotate(2deg) translateY(-50%); }
-
-    /* ── MARQUEE ───────────────────────────────── */
-    .marquee-strip {
-      background: var(--strawberry);
-      border-top: 3px solid var(--ink);
-      border-bottom: 3px solid var(--ink);
-      padding: 0.8rem 0;
-      overflow: hidden;
-      position: relative;
-      z-index: 10;
+    /* Decorative stitch lines */
+    .stitch-v {
+      position: absolute;
+      top: 10%;
+      right: 2.5rem;
+      height: 80%;
+      width: 1px;
+      background: repeating-linear-gradient(
+        to bottom,
+        var(--gold) 0px,
+        var(--gold) 8px,
+        transparent 8px,
+        transparent 16px
+      );
+      opacity: 0.5;
     }
 
-    .marquee-track {
-      display: flex;
-      animation: marquee 24s linear infinite;
-      width: max-content;
-    }
-
-    .marquee-item {
-      font-family: var(--font-hand);
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: white;
-      padding: 0 2.5rem;
+    /* ─── DIVIDER ──────────────────────────────────────────── */
+    .section-divider {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      justify-content: center;
+      padding: 3rem 0;
+      gap: 1.5rem;
     }
 
-    .marquee-item::after { content: '✂'; color: var(--honey); font-size: 1rem; }
-
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
+    .section-divider::before,
+    .section-divider::after {
+      content: '';
+      flex: 1;
+      max-width: 200px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold));
     }
 
-    /* ── SHARED SECTION STYLES ─────────────────── */
+    .section-divider::after {
+      background: linear-gradient(to left, transparent, var(--gold));
+    }
+
+    .divider-ornament {
+      font-size: 1.2rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    /* ─── SECTION COMMONS ──────────────────────────────────── */
+    section {
+      padding: 6rem 0;
+    }
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 3rem;
     }
 
-    .kicker {
+    .section-label {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-label::before {
+      content: '';
       display: block;
-      font-family: var(--font-hand);
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--strawberry);
-      margin-bottom: 0.4rem;
+      width: 24px;
+      height: 1px;
+      background: var(--gold);
     }
 
     .section-title {
-      font-family: var(--font-serif);
-      font-size: clamp(1.9rem, 3.5vw, 3rem);
-      font-weight: 700;
-      line-height: 1.15;
-      color: var(--ink);
-      margin-bottom: 1.25rem;
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--plum);
+      margin-bottom: 1.5rem;
     }
 
     .section-title em {
       font-style: italic;
-      color: var(--strawberry);
+      color: var(--dusty-rose);
     }
 
-    /* wavy section transition */
-    .wave-top {
-      width: 100%;
-      line-height: 0;
-    }
-
-    /* ── ABOUT ─────────────────────────────────── */
+    /* ─── ABOUT ────────────────────────────────────────────── */
     #about {
-      padding: 5rem 0 6rem;
-      background: var(--warm-white);
+      background-color: var(--warm-white);
     }
 
     .about-grid {
       display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 5rem;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 6rem;
       align-items: center;
     }
 
-    .about-body p {
-      font-size: 1rem;
-      color: var(--ink-soft);
-      font-weight: 600;
-      line-height: 1.75;
-      margin-bottom: 1.2rem;
+    .about-image-wrap {
+      position: relative;
     }
 
-    .about-quote {
-      margin: 1.75rem 0;
-      padding: 1.2rem 1.5rem;
-      background: var(--strawberry-pale);
-      border-left: 5px solid var(--strawberry);
-      border-radius: 0 12px 12px 0;
-      font-family: var(--font-hand);
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: var(--strawberry-deep);
-      line-height: 1.4;
+    .about-image-wrap::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      right: 20px;
+      bottom: 20px;
+      border: 1px solid var(--gold);
+      opacity: 0.4;
+      z-index: 0;
     }
 
-    .fun-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 1.5rem;
-    }
-
-    .chip {
-      background: var(--honey-pale);
-      border: 2.5px solid var(--honey);
-      border-radius: 999px;
-      padding: 0.28rem 0.9rem;
-      font-size: 0.82rem;
-      font-weight: 800;
-      color: var(--ink);
-    }
-
-    .about-sig {
-      font-family: var(--font-hand);
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: var(--ink);
-      margin-top: 2rem;
-    }
-
-    /* Photo side */
-    .about-photo-wrap { position: relative; }
-
-    .about-frame {
-      border: 4px solid var(--ink);
-      border-radius: 6px 22px 8px 20px / 20px 8px 22px 6px;
-      overflow: hidden;
-      box-shadow: 7px 7px 0 var(--strawberry);
-      aspect-ratio: 3/4;
-      background: var(--strawberry-pale);
-    }
-
-    .about-frame img {
+    .about-image-wrap img {
+      position: relative;
+      z-index: 1;
       width: 100%;
-      height: 100%;
+      aspect-ratio: 3/4;
       object-fit: cover;
       object-position: center top;
     }
 
-    .about-note {
-      position: absolute;
-      bottom: -16px;
-      right: -16px;
-      background: var(--honey);
-      border: 3px solid var(--ink);
-      border-radius: 4px;
-      padding: 0.5rem 0.9rem;
-      font-family: var(--font-hand);
-      font-size: 1.1rem;
-      font-weight: 700;
-      transform: rotate(4deg);
-      box-shadow: 3px 3px 0 var(--ink);
-      z-index: 5;
-    }
-
-    .about-pin {
-      position: absolute;
-      top: -16px;
-      left: -16px;
-      background: var(--mint);
-      border: 3px solid var(--ink);
-      border-radius: 50%;
-      width: 58px;
-      height: 58px;
+    /* Placeholder if no image */
+    .about-image-placeholder {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: linear-gradient(135deg, var(--blush), var(--dusty-rose));
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
-      box-shadow: 3px 3px 0 var(--ink);
-      z-index: 5;
-      transform: rotate(-6deg);
     }
 
-    /* ── SERVICES ──────────────────────────────── */
+    .about-text p {
+      font-size: 1.05rem;
+      color: var(--charcoal);
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+
+    .about-text p:last-of-type {
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .about-signature {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--plum);
+      margin-top: 2.5rem;
+      line-height: 1;
+    }
+
+    /* ─── SERVICES ─────────────────────────────────────────── */
     #services {
-      padding: 5rem 0 6rem;
-      background: var(--strawberry-pale);
+      background-color: var(--cream);
       position: relative;
       overflow: hidden;
     }
 
-    /* Dots pattern */
-    #services::after {
+    /* fabric texture strip */
+    #services::before {
       content: '';
       position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle, rgba(242,67,106,0.08) 2px, transparent 2px);
-      background-size: 30px 30px;
-      pointer-events: none;
-      z-index: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--gold) 0px,
+        var(--gold) 20px,
+        transparent 20px,
+        transparent 30px,
+        var(--dusty-rose) 30px,
+        var(--dusty-rose) 50px,
+        transparent 50px,
+        transparent 60px
+      );
+      opacity: 0.6;
     }
 
     .services-header {
       text-align: center;
-      margin-bottom: 3.5rem;
-      position: relative;
-      z-index: 1;
+      max-width: 600px;
+      margin: 0 auto 4rem;
     }
 
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      position: relative;
-      z-index: 1;
+      gap: 2px;
     }
 
-    .svc-card {
-      background: white;
-      border: 3px solid var(--ink);
-      border-radius: 4px 18px 6px 16px / 16px 4px 18px 6px;
-      padding: 2rem 1.75rem;
-      box-shadow: 5px 5px 0 var(--ink);
-      transition: transform 0.2s, box-shadow 0.2s;
+    .service-card {
+      background: var(--warm-white);
+      padding: 3rem 2.5rem;
       position: relative;
       overflow: hidden;
+      transition: background 0.3s ease;
     }
 
-    .svc-card:hover {
-      transform: translate(-3px, -3px);
-      box-shadow: 8px 8px 0 var(--ink);
+    .service-card:hover {
+      background: var(--plum);
     }
 
-    .svc-card::before {
+    .service-card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 6px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
     }
 
-    .svc-card:nth-child(1)::before { background: var(--strawberry); }
-    .svc-card:nth-child(2)::before { background: var(--honey); }
-    .svc-card:nth-child(3)::before { background: var(--mint); }
-    .svc-card:nth-child(4)::before { background: var(--mint); }
-    .svc-card:nth-child(5)::before { background: var(--strawberry); }
-    .svc-card:nth-child(6)::before { background: var(--honey); }
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
 
-    .svc-icon { font-size: 2.2rem; display: block; margin-bottom: 1rem; line-height: 1; }
+    .service-icon {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
 
-    .svc-name {
-      font-family: var(--font-hand);
+    .service-name {
+      font-family: var(--font-display);
       font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 0.6rem;
-      line-height: 1.2;
+      font-weight: 500;
+      color: var(--plum);
+      margin-bottom: 1rem;
+      transition: color 0.3s ease;
     }
 
-    .svc-desc {
-      font-size: 0.88rem;
-      color: var(--ink-soft);
-      line-height: 1.65;
-      font-weight: 600;
+    .service-card:hover .service-name {
+      color: var(--gold-light);
     }
 
-    /* ── GALLERY ───────────────────────────────── */
+    .service-desc {
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      transition: color 0.3s ease;
+    }
+
+    .service-card:hover .service-desc {
+      color: var(--blush);
+    }
+
+    /* ─── GALLERY ──────────────────────────────────────────── */
     #gallery {
-      padding: 5rem 0 4rem;
-      background: var(--paper);
+      background-color: var(--plum);
+      padding: 6rem 0;
+    }
+
+    #gallery .section-title {
+      color: var(--cream);
+    }
+
+    #gallery .section-title em {
+      color: var(--gold-light);
     }
 
     .gallery-header {
-      text-align: center;
       margin-bottom: 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
     }
 
-    /* Polaroid layout */
-    .polaroids {
+    .gallery-subtitle {
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      color: var(--blush);
+      max-width: 300px;
+      line-height: 1.6;
+    }
+
+    /* Masonry-style gallery */
+    .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: repeat(3, 220px);
+      gap: 4px;
     }
 
-    .polaroid {
-      background: white;
-      border: 2px solid #e0d5cc;
-      padding: 0.75rem 0.75rem 2.75rem;
-      box-shadow: 3px 5px 14px rgba(45,26,31,0.12);
-      transition: transform 0.25s, box-shadow 0.25s;
+    .gallery-item {
+      overflow: hidden;
+      position: relative;
       cursor: zoom-in;
     }
 
-    .polaroid:nth-child(1) { transform: rotate(-2deg); }
-    .polaroid:nth-child(2) { transform: rotate(1.5deg); }
-    .polaroid:nth-child(3) { transform: rotate(-1deg); }
-    .polaroid:nth-child(4) { transform: rotate(2.5deg); }
-    .polaroid:nth-child(5) { transform: rotate(1deg); }
-    .polaroid:nth-child(6) { transform: rotate(-2.5deg); }
-    .polaroid:nth-child(7) { transform: rotate(1.5deg); }
-
-    .polaroid:hover {
-      transform: rotate(0deg) scale(1.05) translateY(-8px) !important;
-      box-shadow: 8px 14px 32px rgba(45,26,31,0.22);
-      z-index: 10;
-      position: relative;
-    }
-
-    .polaroid-featured {
-      grid-column: span 2;
-    }
-
-    .polaroid-featured .pol-photo {
-      aspect-ratio: 2/1.1;
-    }
-
-    .pol-photo {
-      width: 100%;
-      aspect-ratio: 1;
-      overflow: hidden;
-      background: var(--strawberry-pale);
-    }
-
-    .pol-photo img {
+    .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.6s ease;
     }
 
-    .pol-placeholder {
+    .gallery-item:hover img {
+      transform: scale(1.06);
+    }
+
+    /* Layout positions */
+    .gallery-item:nth-child(1) { grid-column: 1 / 5; grid-row: 1 / 3; }
+    .gallery-item:nth-child(2) { grid-column: 5 / 8; grid-row: 1 / 2; }
+    .gallery-item:nth-child(3) { grid-column: 8 / 13; grid-row: 1 / 3; }
+    .gallery-item:nth-child(4) { grid-column: 5 / 8; grid-row: 2 / 3; }
+    .gallery-item:nth-child(5) { grid-column: 1 / 5; grid-row: 3 / 4; }
+    .gallery-item:nth-child(6) { grid-column: 5 / 9; grid-row: 3 / 4; }
+    .gallery-item:nth-child(7) { grid-column: 9 / 13; grid-row: 3 / 4; }
+
+    /* Overlay shimmer on hover */
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--gold) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .gallery-item:hover::after {
+      opacity: 0.15;
+    }
+
+    /* Placeholder items */
+    .gallery-placeholder {
       width: 100%;
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: var(--font-hand);
-      font-size: 0.95rem;
-      color: var(--ink-soft);
-      text-align: center;
-      padding: 1rem;
-      font-weight: 600;
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-style: italic;
+      letter-spacing: 0.05em;
     }
 
-    .pol-caption {
-      margin-top: 0.6rem;
-      font-family: var(--font-hand);
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--ink-soft);
-      text-align: center;
+    .gallery-placeholder:nth-child(odd) {
+      background: color-mix(in srgb, var(--plum-light) 80%, var(--dusty-rose));
+      color: var(--blush);
     }
 
-    /* ── TEXTURE STRIP ─────────────────────────── */
-    .tex-strip {
+    .gallery-placeholder:nth-child(even) {
+      background: color-mix(in srgb, var(--plum) 60%, var(--dusty-rose));
+      color: var(--cream);
+    }
+
+    /* ─── TEXTURE STRIP ────────────────────────────────────── */
+    .texture-strip {
+      height: 280px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      height: 220px;
-      border-top: 3px solid var(--ink);
-      border-bottom: 3px solid var(--ink);
+      overflow: hidden;
     }
 
-    .tex-item {
+    .texture-strip-item {
       overflow: hidden;
       position: relative;
     }
 
-    .tex-item img {
+    .texture-strip-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.5s ease;
+      filter: saturate(0.7);
+      transition: filter 0.4s ease, transform 0.6s ease;
     }
 
-    .tex-item:hover img { transform: scale(1.07); }
+    .texture-strip-item:hover img {
+      filter: saturate(1.1);
+      transform: scale(1.04);
+    }
 
-    .tex-placeholder {
+    .texture-strip-placeholder {
       width: 100%;
       height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-hand);
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--ink-soft);
     }
 
-    .tex-item:nth-child(1) .tex-placeholder { background: linear-gradient(135deg, #fde8ed, #f7738f); }
-    .tex-item:nth-child(2) .tex-placeholder { background: linear-gradient(135deg, #fef8dc, #f5c842); }
-    .tex-item:nth-child(3) .tex-placeholder { background: linear-gradient(135deg, #e6f7f1, #a8dbc5); }
+    .texture-strip-placeholder:nth-child(1) {
+      background: linear-gradient(135deg, var(--blush), var(--dusty-rose));
+    }
+    .texture-strip-placeholder:nth-child(2) {
+      background: linear-gradient(135deg, var(--cream), var(--gold-light));
+    }
+    .texture-strip-placeholder:nth-child(3) {
+      background: linear-gradient(135deg, var(--dusty-rose), var(--plum-light));
+    }
 
-    /* ── PROCESS ───────────────────────────────── */
+    /* ─── PROCESS ──────────────────────────────────────────── */
     #process {
-      padding: 5rem 0 6rem;
-      background: var(--honey-pale);
+      background-color: var(--warm-white);
     }
 
     .process-header {
       text-align: center;
-      margin-bottom: 4rem;
+      max-width: 550px;
+      margin: 0 auto 5rem;
     }
 
-    .steps {
+    .process-steps {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
+      gap: 1px;
+      background: var(--gold);
+      border: 1px solid var(--gold);
+    }
+
+    .process-step {
+      background: var(--warm-white);
+      padding: 3rem 2rem;
       position: relative;
     }
 
-    .steps::before {
-      content: '';
-      position: absolute;
-      top: 39px;
-      left: 12%;
-      right: 12%;
-      height: 3px;
-      background: repeating-linear-gradient(
-        90deg,
-        var(--strawberry) 0,
-        var(--strawberry) 12px,
-        transparent 12px,
-        transparent 22px
-      );
-      z-index: 0;
+    .step-number {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      font-weight: 300;
+      color: var(--blush);
+      line-height: 1;
+      margin-bottom: 1.5rem;
     }
-
-    .step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .step-num {
-      width: 80px;
-      height: 80px;
-      border-radius: 50% 50% 50% 50% / 58% 58% 42% 42%;
-      border: 3px solid var(--ink);
-      box-shadow: 3px 3px 0 var(--ink);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-hand);
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 1.25rem;
-      flex-shrink: 0;
-      transition: transform 0.2s;
-    }
-
-    .step:nth-child(1) .step-num { background: var(--strawberry); color: white; }
-    .step:nth-child(2) .step-num { background: var(--honey); color: var(--ink); }
-    .step:nth-child(3) .step-num { background: var(--mint); color: var(--ink); }
-    .step:nth-child(4) .step-num { background: var(--strawberry-lt); color: white; }
-
-    .step:hover .step-num { transform: scale(1.12) rotate(-5deg); }
 
     .step-title {
-      font-family: var(--font-hand);
+      font-family: var(--font-display);
       font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--plum);
+      margin-bottom: 0.75rem;
     }
 
     .step-desc {
+      font-family: var(--font-sans);
       font-size: 0.85rem;
-      color: var(--ink-soft);
-      font-weight: 600;
-      line-height: 1.6;
-    }
-
-    /* ── CONTACT ───────────────────────────────── */
-    #contact {
-      padding: 5rem 0 6rem;
-      background: var(--warm-white);
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 5rem;
-      align-items: start;
-    }
-
-    .contact-tagline {
-      font-size: 1rem;
-      color: var(--ink-soft);
-      font-weight: 600;
-      margin-bottom: 2.5rem;
+      color: var(--text-muted);
       line-height: 1.7;
     }
 
-    .contact-cards {
+    /* ─── CONTACT ──────────────────────────────────────────── */
+    #contact {
+      background-color: var(--plum);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #contact::after {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      border: 1px solid rgba(184, 144, 96, 0.2);
+    }
+
+    #contact::before {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: -80px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      border: 1px solid rgba(184, 144, 96, 0.15);
+    }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+      position: relative;
+      z-index: 2;
+    }
+
+    .contact-left .section-title {
+      color: var(--cream);
+    }
+
+    .contact-left .section-title em {
+      color: var(--gold-light);
+    }
+
+    .contact-tagline {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--blush);
+      margin-bottom: 3rem;
+      line-height: 1.6;
+    }
+
+    .contact-items {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 2rem;
     }
 
-    .cc {
-      background: white;
-      border: 3px solid var(--ink);
-      border-radius: 4px 14px 4px 14px / 14px 4px 14px 4px;
-      padding: 0.9rem 1.2rem;
+    .contact-item {
       display: flex;
-      align-items: center;
-      gap: 1rem;
-      box-shadow: 3px 3px 0 var(--strawberry);
-      transition: transform 0.15s, box-shadow 0.15s;
+      gap: 1.25rem;
+      align-items: flex-start;
     }
 
-    .cc:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 5px 5px 0 var(--strawberry);
+    .contact-item-icon {
+      font-size: 1.2rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 2px;
     }
 
-    .cc-icon { font-size: 1.6rem; flex-shrink: 0; }
-
-    .cc-label {
-      font-family: var(--font-hand);
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--strawberry);
+    .contact-item-label {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      line-height: 1;
+      color: var(--gold);
       margin-bottom: 0.25rem;
     }
 
-    .cc-val {
-      font-weight: 800;
-      font-size: 0.95rem;
-      color: var(--ink);
+    .contact-item-value {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: var(--cream);
+      font-weight: 400;
     }
 
-    .cc-val a:hover { color: var(--strawberry); }
+    .contact-item-value a {
+      transition: color 0.3s ease;
+    }
 
-    /* Form */
+    .contact-item-value a:hover {
+      color: var(--gold-light);
+    }
+
+    /* ─── CONTACT FORM ─────────────────────────────────────── */
     .contact-form {
-      background: white;
-      border: 3px solid var(--ink);
-      border-radius: 8px 24px 10px 22px / 22px 10px 24px 8px;
-      padding: 2.5rem;
-      box-shadow: 6px 6px 0 var(--strawberry);
       display: flex;
       flex-direction: column;
       gap: 1.25rem;
     }
 
-    .form-heading {
-      font-family: var(--font-hand);
-      font-size: 1.7rem;
-      font-weight: 700;
-      color: var(--ink);
-      text-align: center;
-      margin-bottom: 0.25rem;
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
     }
 
-    .form-field { display: flex; flex-direction: column; gap: 0.4rem; }
-
     .form-label {
-      font-size: 0.75rem;
-      font-weight: 800;
-      color: var(--ink);
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      color: var(--gold);
     }
 
     .form-input,
     .form-textarea {
-      border: 2.5px solid var(--ink);
-      border-radius: 6px 16px 8px 14px / 14px 6px 16px 8px;
-      padding: 0.75rem 1rem;
+      background: rgba(245, 240, 232, 0.07);
+      border: 1px solid rgba(184, 144, 96, 0.3);
+      padding: 0.875rem 1rem;
+      color: var(--cream);
       font-family: var(--font-body);
       font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--ink);
-      background: var(--paper);
       outline: none;
+      transition: border-color 0.3s ease, background 0.3s ease;
       width: 100%;
-      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: rgba(232, 207, 197, 0.3);
     }
 
     .form-input:focus,
     .form-textarea:focus {
-      border-color: var(--strawberry);
-      background: var(--strawberry-pale);
+      border-color: var(--gold);
+      background: rgba(245, 240, 232, 0.1);
     }
 
-    .form-textarea { min-height: 110px; resize: vertical; }
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
 
-    .form-btn {
-      background: var(--strawberry);
-      color: white;
-      border: 3px solid var(--ink);
-      border-radius: 999px;
-      padding: 0.9rem 2rem;
-      font-family: var(--font-body);
-      font-weight: 800;
-      font-size: 0.95rem;
+    .form-submit {
+      background: var(--gold);
+      color: var(--plum);
+      border: none;
+      padding: 1rem 2.5rem;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
       cursor: pointer;
-      box-shadow: 4px 4px 0 var(--ink);
-      transition: transform 0.15s, box-shadow 0.15s;
+      transition: background 0.3s ease, transform 0.2s ease;
       align-self: flex-start;
     }
 
-    .form-btn:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 6px 6px 0 var(--ink);
+    .form-submit:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
     }
 
-    /* ── FOOTER ────────────────────────────────── */
+    /* ─── FOOTER ───────────────────────────────────────────── */
     footer {
-      background: var(--ink);
-      padding: 2.5rem 3rem;
-      text-align: center;
+      background: var(--charcoal);
+      padding: 3rem;
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      gap: 0.6rem;
     }
-
-    .footer-brand {
-      font-family: var(--font-hand);
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--strawberry-lt);
-    }
-
-    .footer-hearts { color: var(--strawberry-lt); font-size: 1rem; letter-spacing: 0.35em; }
 
     .footer-copy {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.35);
-      font-weight: 600;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
     }
 
-    /* ── SCROLL REVEAL ─────────────────────────── */
-    .r {
+    .footer-stitch {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .footer-stitch::before,
+    .footer-stitch::after {
+      content: '✦';
+      font-size: 0.5rem;
+    }
+
+    /* ─── SCROLL ANIMATIONS ────────────────────────────────── */
+    .fade-up {
       opacity: 0;
-      transform: translateY(22px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
     }
-    .r.on { opacity: 1; transform: none; }
-    .d1 { transition-delay: 0.1s; }
-    .d2 { transition-delay: 0.2s; }
-    .d3 { transition-delay: 0.3s; }
-    .d4 { transition-delay: 0.4s; }
 
-    /* ── RESPONSIVE ────────────────────────────── */
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-up-delay-1 { transition-delay: 0.1s; }
+    .fade-up-delay-2 { transition-delay: 0.2s; }
+    .fade-up-delay-3 { transition-delay: 0.3s; }
+    .fade-up-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── RESPONSIVE ───────────────────────────────────────── */
     @media (max-width: 1024px) {
-      .hero-inner { grid-template-columns: 1fr; padding: 6rem 2rem 3rem; }
-      .hero-blob { display: none; }
-      .hero-img-wrap { display: none; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 10rem 3rem 4rem; }
+      .hero-left::after { display: none; }
+      .hero-right { height: 50vh; }
       .about-grid { grid-template-columns: 1fr; gap: 3rem; }
       .services-grid { grid-template-columns: 1fr 1fr; }
-      .polaroids { grid-template-columns: repeat(2, 1fr); }
-      .polaroid-featured { grid-column: span 2; }
-      .steps { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-      .steps::before { display: none; }
-      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+      nav { padding: 1.5rem 2rem; }
       .container { padding: 0 2rem; }
-      nav { padding: 1rem 1.5rem; }
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: unset;
+      }
+      .gallery-item:nth-child(n) {
+        grid-column: unset;
+        grid-row: unset;
+        height: 220px;
+      }
+      .gallery-item:nth-child(1) { grid-column: 1 / -1; height: 300px; }
       .services-grid { grid-template-columns: 1fr; }
-      .polaroids { grid-template-columns: 1fr 1fr; gap: 1.2rem; }
-      .steps { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .texture-strip { height: 180px; }
       .nav-links { display: none; }
-      .tex-strip { height: 150px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
+  <!-- ─── NAV ─────────────────────────────────── -->
   <nav id="navbar">
-    <span class="nav-logo">✂ The Stitch Studio</span>
+    <!-- If you have a logo image, use: -->
+    <!-- <img src="/images/logo.png" alt="Studio Logo" class="nav-logo" /> -->
+    <span class="nav-logo-text">Sammy Sews</span>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
@@ -964,326 +988,331 @@
     </ul>
   </nav>
 
-  <!-- HERO -->
+  <!-- ─── HERO ─────────────────────────────────── -->
   <section class="hero" id="home">
-    <div class="hero-blob"></div>
-    <div class="hero-dot"></div>
-    <div class="hero-dot-2"></div>
-
-    <div class="hero-inner">
-      <div class="hero-text">
-        <span class="hero-tag">🧵 handmade with love</span>
-        <h1 class="hero-title">
-          Sewing<br>
-          that <span class="hl">fits</span><br>
-          your life.
-        </h1>
-        <p class="hero-sub">
-          Custom garments, expert alterations, and loving repairs —<br>
-          made by hand, made for you.
-        </p>
-        <div class="hero-btns">
-          <a href="#gallery" class="btn btn-pink">See My Work ✨</a>
-          <a href="#contact" class="btn btn-white">Get in Touch 👋</a>
-        </div>
-      </div>
-
-      <div class="hero-img-wrap">
-        <div class="hero-img-frame">
-          <!-- Replace src with your hero image: /images/hero.jpg -->
-          <img src="/images/hero.jpg" alt="A handmade garment"
-            onerror="this.style.display='none'" />
-        </div>
-        <div class="sticker s1">made with ♥</div>
-        <div class="sticker s2">one of a kind!</div>
-        <div class="sticker s3">custom fit ✓</div>
-      </div>
+    <div class="hero-left">
+      <p class="hero-eyebrow">Handcrafted with love</p>
+      <h1 class="hero-title">
+        Crafted<br>
+        to <em>Fit You</em><br>
+        Perfectly.
+      </h1>
+      <p class="hero-subtitle">
+        Bespoke clothing, expert alterations,<br>
+        and artful repairs — made just for you.
+      </p>
+      <a href="#gallery" class="hero-cta">
+        See the Work <span class="hero-cta-arrow">→</span>
+      </a>
+      <div class="stitch-v"></div>
+    </div>
+    <div class="hero-right">
+      <!--
+        Replace the src below with your actual hero/portrait image.
+        e.g. src="/images/hero.jpg"
+      -->
+      <img
+        src="/images/hero.jpg"
+        alt="Beautiful handcrafted garment"
+        onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #5c3347, #3d2130)'"
+      />
     </div>
   </section>
 
-  <!-- MARQUEE -->
-  <div class="marquee-strip" aria-hidden="true">
-    <div class="marquee-track">
-      <span class="marquee-item">Custom Sewing</span>
-      <span class="marquee-item">Alterations</span>
-      <span class="marquee-item">Repairs & Restoration</span>
-      <span class="marquee-item">Bridal Work</span>
-      <span class="marquee-item">Upcycling</span>
-      <span class="marquee-item">Made with Love</span>
-      <span class="marquee-item">Custom Sewing</span>
-      <span class="marquee-item">Alterations</span>
-      <span class="marquee-item">Repairs & Restoration</span>
-      <span class="marquee-item">Bridal Work</span>
-      <span class="marquee-item">Upcycling</span>
-      <span class="marquee-item">Made with Love</span>
-    </div>
-  </div>
-
-  <!-- ABOUT -->
+  <!-- ─── ABOUT ─────────────────────────────────── -->
   <section id="about">
     <div class="container">
       <div class="about-grid">
-        <div class="r">
-          <span class="kicker">✦ a little about me</span>
-          <h2 class="section-title">Hi, I'm <em>[Your Name]!</em></h2>
-          <div class="about-body">
-            <p>
-              I've been sewing since I was tall enough to reach my grandmother's machine
-              (barely!). What started as a childhood obsession turned into a lifelong craft —
-              and now I get to do what I love every single day.
-            </p>
-            <div class="about-quote">
-              "If it's got fabric, a needle, and thread — I'm in my happy place."
-            </div>
-            <p>
-              I'm based in [Your City] and I work with everyone from brides who need the
-              perfect fit, to folks who just want their favorite jeans taken in. No job is
-              too small, and no project is too quirky!
-            </p>
-          </div>
-          <div class="fun-chips">
-            <span class="chip">📍 [Your City]</span>
-            <span class="chip">🪡 Sewing since [year]</span>
-            <span class="chip">👗 Alterations lover</span>
-            <span class="chip">✂ Bridal specialist</span>
-            <span class="chip">🎨 Upcycling fan</span>
-          </div>
-          <div class="about-sig">[Your Name]</div>
+        <div class="about-image-wrap fade-up">
+          <!--
+            Replace with your seamstress portrait photo.
+            e.g. src="/images/portrait.jpg"
+          -->
+          <img
+            src="/images/portrait.jpg"
+            alt="Portrait of the seamstress"
+            onerror="this.outerHTML='<div class=\'about-image-placeholder\'></div>'"
+          />
         </div>
-
-        <div class="about-photo-wrap r d2">
-          <div class="about-pin">🪡</div>
-          <div class="about-frame">
-            <!-- Replace src with your portrait: /images/portrait.jpg -->
-            <img src="/images/portrait.jpg" alt="Portrait"
-              onerror="this.outerHTML='<div style=\'width:100%;height:100%;background:linear-gradient(135deg,#fde8ed,#f7738f);\'></div>'" />
-          </div>
-          <div class="about-note">that's me! 👋</div>
+        <div class="about-text fade-up fade-up-delay-2">
+          <p class="section-label">The person behind the pins</p>
+          <h2 class="section-title">Where craft meets <em>passion</em></h2>
+          <p>
+            Hi, I'm [Your Name] — a seamstress and maker based in [Your City].
+            I've been sewing since I was a little girl, learning on my grandmother's
+            old Singer, and what started as curiosity has grown into a deep love
+            for the art of making things by hand.
+          </p>
+          <p>
+            Every garment tells a story. Whether I'm fitting a wedding dress,
+            breathing new life into a beloved heirloom jacket, or designing something
+            entirely from scratch — I bring care, precision, and a genuine joy
+            for the craft to every piece.
+          </p>
+          <p>
+            "I believe clothing should feel like a second skin. When something fits
+            you perfectly, it changes how you carry yourself."
+          </p>
+          <div class="about-signature">[Your Name]</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SERVICES -->
+  <!-- ─── DIVIDER ───────────────────────────────── -->
+  <div class="section-divider container">
+    <span class="divider-ornament">✦</span>
+  </div>
+
+  <!-- ─── SERVICES ──────────────────────────────── -->
   <section id="services">
     <div class="container">
-      <div class="services-header r">
-        <span class="kicker">✦ what I can do for you</span>
-        <h2 class="section-title">My <em>Services</em></h2>
+      <div class="services-header fade-up">
+        <p class="section-label">What I do</p>
+        <h2 class="section-title">Crafts &amp; <em>Services</em></h2>
       </div>
       <div class="services-grid">
-        <div class="svc-card r">
-          <span class="svc-icon">✂️</span>
-          <h3 class="svc-name">Custom Garments</h3>
-          <p class="svc-desc">Designed and made from scratch — entirely to your measurements and style. Dresses, trousers, blouses — whatever you dream up!</p>
+        <div class="service-card fade-up">
+          <span class="service-icon">✂️</span>
+          <h3 class="service-name">Bespoke Garments</h3>
+          <p class="service-desc">
+            Clothing designed and made entirely to your measurements,
+            your taste, and your vision. From casual wear to formal gowns,
+            each piece is one of a kind.
+          </p>
         </div>
-        <div class="svc-card r d1">
-          <span class="svc-icon">🧵</span>
-          <h3 class="svc-name">Alterations & Tailoring</h3>
-          <p class="svc-desc">Hems, waist adjustments, sleeve shortening, taking in or letting out. If it doesn't fit just right, we'll fix it!</p>
+        <div class="service-card fade-up fade-up-delay-1">
+          <span class="service-icon">🧵</span>
+          <h3 class="service-name">Alterations &amp; Tailoring</h3>
+          <p class="service-desc">
+            Hems, taking in or letting out seams, adjusting sleeves,
+            resizing waistbands — if it doesn't fit right, I'll make it
+            fit perfectly.
+          </p>
         </div>
-        <div class="svc-card r d2">
-          <span class="svc-icon">🪡</span>
-          <h3 class="svc-name">Repairs & Restoration</h3>
-          <p class="svc-desc">Zippers, torn seams, fraying edges, missing buttons. I love bringing beloved clothes back to life.</p>
+        <div class="service-card fade-up fade-up-delay-2">
+          <span class="service-icon">🪡</span>
+          <h3 class="service-name">Repairs &amp; Restoration</h3>
+          <p class="service-desc">
+            Worn seams, broken zippers, moth holes, missing buttons.
+            I lovingly restore your favorite pieces so they can
+            be worn and cherished for years to come.
+          </p>
         </div>
-        <div class="svc-card r">
-          <span class="svc-icon">💍</span>
-          <h3 class="svc-name">Bridal & Occasion Wear</h3>
-          <p class="svc-desc">Wedding gowns, bridesmaid alterations, prom, and special occasions. Your big day deserves a perfect fit!</p>
+        <div class="service-card fade-up fade-up-delay-3">
+          <span class="service-icon">👗</span>
+          <h3 class="service-name">Bridal &amp; Occasion Wear</h3>
+          <p class="service-desc">
+            Wedding dresses, bridesmaids alterations, prom gowns.
+            For the moments that matter most, every detail
+            is attended to with the utmost care.
+          </p>
         </div>
-        <div class="svc-card r d1">
-          <span class="svc-icon">♻️</span>
-          <h3 class="svc-name">Upcycling & Redesign</h3>
-          <p class="svc-desc">Turn something old into something you'll actually wear! Let's get creative with fabrics you already own.</p>
+        <div class="service-card fade-up">
+          <span class="service-icon">🧥</span>
+          <h3 class="service-name">Upcycling &amp; Redesign</h3>
+          <p class="service-desc">
+            Transform something old into something new. Reimagine
+            a vintage find, reconstruct a dated silhouette, or give
+            a cherished piece a completely fresh look.
+          </p>
         </div>
-        <div class="svc-card r d2">
-          <span class="svc-icon">📐</span>
-          <h3 class="svc-name">Consultations</h3>
-          <p class="svc-desc">Not sure what you need? Let's chat! Bring your clothes, your ideas, or just your questions.</p>
+        <div class="service-card fade-up fade-up-delay-1">
+          <span class="service-icon">📐</span>
+          <h3 class="service-name">Pattern &amp; Fitting Consultations</h3>
+          <p class="service-desc">
+            Not sure what you need? Book a consultation. We'll look
+            at your wardrobe, your lifestyle, and figure out
+            the best path forward together.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- GALLERY -->
+  <!-- ─── GALLERY ───────────────────────────────── -->
   <section id="gallery">
     <div class="container">
-      <div class="gallery-header r">
-        <span class="kicker">✦ the work</span>
-        <h2 class="section-title">Fresh from the <em>Studio</em></h2>
+      <div class="gallery-header">
+        <div>
+          <p class="section-label" style="color: var(--gold);">The work</p>
+          <h2 class="section-title">A glimpse of the <em>studio</em></h2>
+        </div>
+        <p class="gallery-subtitle">
+          A curated selection of garments made, altered, and restored.
+          Each piece has its own story.
+        </p>
       </div>
 
       <!--
-        Gallery: Replace src with your actual work photos.
-        Files: /images/work-1.jpg through /images/work-7.jpg
-        Edit the polaroid-caption text to describe each piece!
-        The first item (polaroid-featured) spans 2 columns — use a wide/landscape-friendly shot.
+        GALLERY IMAGES
+        Replace src values with your actual work photos.
+        Recommended: 7 photos of finished garments, detail shots, etc.
+
+        Example:
+          src="/images/work-1.jpg"
+          src="/images/work-2.jpg"
+          ...etc
       -->
-      <div class="polaroids">
-        <div class="polaroid polaroid-featured r">
-          <div class="pol-photo">
-            <img src="/images/work-1.jpg" alt="Featured work"
-              onerror="this.outerHTML='<div class=\'pol-placeholder\' style=\'background:var(--strawberry-pale)\'>your fave piece here ✨</div>'" />
-          </div>
-          <p class="pol-caption">a recent favorite ✨</p>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="/images/work-1.jpg" alt="Garment 1"
+            onerror="this.outerHTML='<div class=\'gallery-placeholder\'>garment no. 01</div>'" />
         </div>
-
-        <div class="polaroid r d1">
-          <div class="pol-photo">
-            <img src="/images/work-2.jpg" alt="Work 2"
-              onerror="this.outerHTML='<div class=\'pol-placeholder\' style=\'background:var(--honey-pale)\'>piece no. 02</div>'" />
-          </div>
-          <p class="pol-caption">custom fit!</p>
+        <div class="gallery-item">
+          <img src="/images/work-2.jpg" alt="Garment 2"
+            onerror="this.outerHTML='<div class=\'gallery-placeholder\'>garment no. 02</div>'" />
         </div>
-
-        <div class="polaroid r d2">
-          <div class="pol-photo">
-            <img src="/images/work-3.jpg" alt="Work 3"
-              onerror="this.outerHTML='<div class=\'pol-placeholder\' style=\'background:var(--mint-pale)\'>piece no. 03</div>'" />
-          </div>
-          <p class="pol-caption">so fun to make</p>
+        <div class="gallery-item">
+          <img src="/images/work-3.jpg" alt="Garment 3"
+            onerror="this.outerHTML='<div class=\'gallery-placeholder\'>garment no. 03</div>'" />
         </div>
-
-        <div class="polaroid r">
-          <div class="pol-photo">
-            <img src="/images/work-4.jpg" alt="Work 4"
-              onerror="this.outerHTML='<div class=\'pol-placeholder\' style=\'background:var(--strawberry-pale)\'>piece no. 04</div>'" />
-          </div>
-          <p class="pol-caption">client fave 💕</p>
+        <div class="gallery-item">
+          <img src="/images/work-4.jpg" alt="Garment 4"
+            onerror="this.outerHTML='<div class=\'gallery-placeholder\'>garment no. 04</div>'" />
         </div>
-
-        <div class="polaroid r d1">
-          <div class="pol-photo">
-            <img src="/images/work-5.jpg" alt="Work 5"
-              onerror="this.outerHTML='<div class=\'pol-placeholder\' style=\'background:var(--honey-pale)\'>piece no. 05</div>'" />
-          </div>
-          <p class="pol-caption">loved this project</p>
+        <div class="gallery-item">
+          <img src="/images/work-5.jpg" alt="Garment 5"
+            onerror="this.outerHTML='<div class=\'gallery-placeholder\'>garment no. 05</div>'" />
         </div>
-
-        <div class="polaroid r d2">
-          <div class="pol-photo">
-            <img src="/images/work-6.jpg" alt="Work 6"
-              onerror="this.outerHTML='<div class=\'pol-placeholder\' style=\'background:var(--mint-pale)\'>bridal magic ✨</div>'" />
-          </div>
-          <p class="pol-caption">bridal magic ✨</p>
+        <div class="gallery-item">
+          <img src="/images/work-6.jpg" alt="Garment 6"
+            onerror="this.outerHTML='<div class=\'gallery-placeholder\'>garment no. 06</div>'" />
         </div>
-
-        <div class="polaroid r d3">
-          <div class="pol-photo">
-            <img src="/images/work-7.jpg" alt="Work 7"
-              onerror="this.outerHTML='<div class=\'pol-placeholder\' style=\'background:var(--strawberry-pale)\'>the detail work!</div>'" />
-          </div>
-          <p class="pol-caption">love the details!</p>
+        <div class="gallery-item">
+          <img src="/images/work-7.jpg" alt="Garment 7"
+            onerror="this.outerHTML='<div class=\'gallery-placeholder\'>garment no. 07</div>'" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TEXTURE STRIP -->
+  <!-- ─── TEXTURE STRIP ─────────────────────────── -->
   <!--
-    3 close-up texture/fabric/macro photos go here.
-    Files: /images/texture-1.jpg, texture-2.jpg, texture-3.jpg
+    Use your close-up fabric/texture photos here.
+    Recommended: 3 tight detail shots of fabric, stitching, or patterns.
   -->
-  <div class="tex-strip">
-    <div class="tex-item">
+  <div class="texture-strip">
+    <div class="texture-strip-item">
       <img src="/images/texture-1.jpg" alt="Fabric texture"
-        onerror="this.outerHTML='<div class=\'tex-placeholder\'>the fabric ♡</div>'" />
+        onerror="this.outerHTML='<div class=\'texture-strip-placeholder\'></div>'" />
     </div>
-    <div class="tex-item">
-      <img src="/images/texture-2.jpg" alt="Stitching detail"
-        onerror="this.outerHTML='<div class=\'tex-placeholder\'>the stitches ♡</div>'" />
+    <div class="texture-strip-item">
+      <img src="/images/texture-2.jpg" alt="Close-up stitching"
+        onerror="this.outerHTML='<div class=\'texture-strip-placeholder\'></div>'" />
     </div>
-    <div class="tex-item">
-      <img src="/images/texture-3.jpg" alt="Fabric close-up"
-        onerror="this.outerHTML='<div class=\'tex-placeholder\'>the details ♡</div>'" />
+    <div class="texture-strip-item">
+      <img src="/images/texture-3.jpg" alt="Fabric detail"
+        onerror="this.outerHTML='<div class=\'texture-strip-placeholder\'></div>'" />
     </div>
   </div>
 
-  <!-- PROCESS -->
+  <!-- ─── PROCESS ───────────────────────────────── -->
   <section id="process">
     <div class="container">
-      <div class="process-header r">
-        <span class="kicker">✦ how it works</span>
-        <h2 class="section-title">From idea to <em>finished piece</em></h2>
+      <div class="process-header fade-up">
+        <p class="section-label">How it works</p>
+        <h2 class="section-title">From vision to <em>finished piece</em></h2>
       </div>
-      <div class="steps">
-        <div class="step r">
-          <div class="step-num">1</div>
-          <h3 class="step-title">Say hello!</h3>
-          <p class="step-desc">Reach out by email, phone, or Instagram. Tell me what you're working with!</p>
+      <div class="process-steps">
+        <div class="process-step fade-up">
+          <div class="step-number">01</div>
+          <h3 class="step-title">Reach Out</h3>
+          <p class="step-desc">
+            Send a message, share some photos, and tell me what you have in mind.
+            We'll set up a time to chat.
+          </p>
         </div>
-        <div class="step r d1">
-          <div class="step-num">2</div>
-          <h3 class="step-title">Let's chat</h3>
-          <p class="step-desc">We'll meet up (or hop on a call) to go over your project, take measurements, and pick fabrics.</p>
+        <div class="process-step fade-up fade-up-delay-1">
+          <div class="step-number">02</div>
+          <h3 class="step-title">Consultation</h3>
+          <p class="step-desc">
+            We meet in person or virtually to go over the details — measurements,
+            fabric, timeline, and budget.
+          </p>
         </div>
-        <div class="step r d2">
-          <div class="step-num">3</div>
-          <h3 class="step-title">I get sewing!</h3>
-          <p class="step-desc">I make your piece with care, keeping you updated and doing a fitting to get it just right.</p>
+        <div class="process-step fade-up fade-up-delay-2">
+          <div class="step-number">03</div>
+          <h3 class="step-title">Creation</h3>
+          <p class="step-desc">
+            I get to work. You'll receive updates along the way,
+            and we'll do a fitting to ensure everything is right.
+          </p>
         </div>
-        <div class="step r d3">
-          <div class="step-num">4</div>
-          <h3 class="step-title">Pick it up!</h3>
-          <p class="step-desc">Your finished piece is ready — wear it and love it. It was made just for you! 🎉</p>
+        <div class="process-step fade-up fade-up-delay-3">
+          <div class="step-number">04</div>
+          <h3 class="step-title">Delivery</h3>
+          <p class="step-desc">
+            Your finished piece is ready for collection.
+            Wear it with joy — it was made just for you.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- ─── DIVIDER ───────────────────────────────── -->
+  <div class="section-divider container">
+    <span class="divider-ornament">✦</span>
+  </div>
+
+  <!-- ─── CONTACT ───────────────────────────────── -->
   <section id="contact">
     <div class="container">
-      <div class="contact-grid">
-        <div class="r">
-          <span class="kicker">✦ let's work together</span>
-          <h2 class="section-title">Say <em>hello!</em></h2>
+      <div class="contact-inner">
+        <div class="contact-left fade-up">
+          <p class="section-label" style="color: var(--gold);">Get in touch</p>
+          <h2 class="section-title">Let's make something <em>beautiful</em></h2>
           <p class="contact-tagline">
-            Got something that needs fixing? A dream outfit in your head? A beloved piece
-            that needs some love? I'd love to hear from you — no project is too big or small!
+            Have a project in mind, a dress that needs adjusting,
+            or just a question? I'd love to hear from you.
           </p>
-          <div class="contact-cards">
-            <div class="cc">
-              <span class="cc-icon">✉️</span>
+          <div class="contact-items">
+            <div class="contact-item">
+              <span class="contact-item-icon">✉</span>
               <div>
-                <p class="cc-label">Email</p>
-                <p class="cc-val"><a href="mailto:hello@yourstudio.com">hello@yourstudio.com</a></p>
+                <p class="contact-item-label">Email</p>
+                <p class="contact-item-value">
+                  <a href="mailto:hello@yourstudio.com">hello@yourstudio.com</a>
+                </p>
               </div>
             </div>
-            <div class="cc">
-              <span class="cc-icon">📱</span>
+            <div class="contact-item">
+              <span class="contact-item-icon">☏</span>
               <div>
-                <p class="cc-label">Phone / Text</p>
-                <p class="cc-val"><a href="tel:+15550000000">(555) 000-0000</a></p>
+                <p class="contact-item-label">Phone</p>
+                <p class="contact-item-value">
+                  <a href="tel:+15550000000">(555) 000-0000</a>
+                </p>
               </div>
             </div>
-            <div class="cc">
-              <span class="cc-icon">📍</span>
+            <div class="contact-item">
+              <span class="contact-item-icon">◎</span>
               <div>
-                <p class="cc-label">Based in</p>
-                <p class="cc-val">Your City, State</p>
+                <p class="contact-item-label">Location</p>
+                <p class="contact-item-value">Your City, State</p>
               </div>
             </div>
-            <div class="cc">
-              <span class="cc-icon">📸</span>
+            <div class="contact-item">
+              <span class="contact-item-icon">⊕</span>
               <div>
-                <p class="cc-label">Instagram</p>
-                <p class="cc-val"><a href="https://instagram.com/yourstudio" target="_blank" rel="noopener">@yourstudio</a></p>
+                <p class="contact-item-label">Instagram</p>
+                <p class="contact-item-value">
+                  <a href="https://instagram.com/yourstudio" target="_blank" rel="noopener">@yourstudio</a>
+                </p>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="r d2">
+        <div class="fade-up fade-up-delay-2">
           <!--
-            To make form work:
-            - Netlify: add data-netlify="true" method="POST"
-            - Formspree: action="https://formspree.io/f/YOUR_ID" method="POST"
+            NOTE: This form won't submit by default as Astro is static.
+            Replace action with your form handler (Netlify Forms, Formspree, etc.)
+            For Netlify: add data-netlify="true" and method="POST"
+            For Formspree: action="https://formspree.io/f/YOUR_ID" method="POST"
           -->
           <form class="contact-form" action="#" method="POST">
-            <p class="form-heading">📬 drop me a note!</p>
-
             <div class="form-field">
               <label class="form-label" for="name">Your Name</label>
               <input class="form-input" type="text" id="name" name="name" placeholder="Jane Smith" required />
@@ -1293,40 +1322,45 @@
               <input class="form-input" type="email" id="email" name="email" placeholder="jane@example.com" required />
             </div>
             <div class="form-field">
-              <label class="form-label" for="service">What do you need?</label>
-              <input class="form-input" type="text" id="service" name="service" placeholder="Alteration, new dress, repair..." />
+              <label class="form-label" for="service">What brings you here?</label>
+              <input class="form-input" type="text" id="service" name="service" placeholder="Alteration, new garment, repair..." />
             </div>
             <div class="form-field">
-              <label class="form-label" for="message">Tell me everything!</label>
-              <textarea class="form-textarea" id="message" name="message" placeholder="Describe your project, ask questions, share inspo pics... I love hearing all the details 🧵"></textarea>
+              <label class="form-label" for="message">Tell me more</label>
+              <textarea class="form-textarea" id="message" name="message" placeholder="Describe your project, timeline, or any questions you have..."></textarea>
             </div>
-            <button type="submit" class="form-btn">Send it my way! 🌟</button>
+            <button type="submit" class="form-submit">Send Message →</button>
           </form>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ─── FOOTER ────────────────────────────────── -->
   <footer>
-    <div class="footer-brand">✂ The Stitch Studio</div>
-    <div class="footer-hearts">♥ ♥ ♥</div>
-    <p class="footer-copy">© 2025 The Stitch Studio — Handmade with love in [Your City]</p>
+    <p class="footer-copy">© 2025 The Stitch Studio. All rights reserved.</p>
+    <p class="footer-stitch">Made with love</p>
   </footer>
 
+  <!-- ─── SCRIPTS ───────────────────────────────── -->
   <script>
-    // Navbar scroll
-    const nav = document.getElementById('navbar');
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 50);
-    }, { passive: true });
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
 
-    // Scroll reveal
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
-    }, { threshold: 0.1, rootMargin: '0px 0px -28px 0px' });
+    // Scroll-triggered fade-in animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-    document.querySelectorAll('.r').forEach(el => obs.observe(el));
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
   </script>
+
 </body>
 </html>
