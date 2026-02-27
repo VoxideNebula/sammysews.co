@@ -1,0 +1,81 @@
+---
+---
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-left fade-up">
+        <p class="section-label" style="color: var(--gold);">Get in touch</p>
+        <h2 class="section-title">Let's make something <em>beautiful</em></h2>
+        <p class="contact-tagline">
+          Have a project in mind, a dress that needs adjusting,
+          or just a question? I'd love to hear from you.
+        </p>
+        <div class="contact-items">
+          <div class="contact-item">
+            <span class="contact-item-icon">✉</span>
+            <div>
+              <p class="contact-item-label">Email</p>
+              <p class="contact-item-value">
+                <a href="mailto:contact@sammysews.co">contact@sammysews.co</a>
+              </p>
+            </div>
+          </div>
+          <!-- <div class="contact-item"> -->
+          <!--   <span class="contact-item-icon">☏</span> -->
+          <!--   <div> -->
+          <!--     <p class="contact-item-label">Phone</p> -->
+          <!--     <p class="contact-item-value"> -->
+          <!--       <a href="tel:+15550000000">(555) 000-0000</a> -->
+          <!--     </p> -->
+          <!--   </div> -->
+          <!-- </div> -->
+          <div class="contact-item">
+            <span class="contact-item-icon">◎</span>
+            <div>
+              <p class="contact-item-label">Location</p>
+              <p class="contact-item-value">Bozeman, Montana</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-icon">⊕</span>
+            <div>
+              <p class="contact-item-label">Instagram</p>
+              <p class="contact-item-value">
+                <a href="https://instagram.com/sammysewss" target="_blank" rel="noopener">@sammysewss</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-up fade-up-delay-2">
+        <!--
+          NOTE: This form won't submit by default as Astro is static.
+          Replace action with your form handler (Netlify Forms, Formspree, etc.)
+          For Netlify: add data-netlify="true" and method="POST"
+          For Formspree: action="https://formspree.io/f/YOUR_ID" method="POST"
+        -->
+        <form class="contact-form" action="#" method="POST">
+          <div class="form-field">
+            <label class="form-label" for="name">Your Name</label>
+            <input class="form-input" type="text" id="name" name="name" placeholder="Jane Smith" required />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="email">Email Address</label>
+            <input class="form-input" type="email" id="email" name="email" placeholder="jane@example.com" required />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="service">What brings you here?</label>
+            <input class="form-input" type="text" id="service" name="service" placeholder="Alteration, new garment, repair..." />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="message">Tell me more</label>
+            <textarea class="form-textarea" id="message" name="message" placeholder="Describe your project, timeline, or any questions you have..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
