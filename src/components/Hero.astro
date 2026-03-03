@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 ---
 
 <section class="hero" id="home">
@@ -23,10 +24,13 @@
       Replace the src below with your actual hero/portrait image.
       e.g. src="/images/hero.jpg"
     -->
-    <img
+    <Image
       src="/images/hero.jpg"
       alt="Beautiful handcrafted garment"
-      onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #5c3347, #3d2130)'"
+      width={800}
+      height={1000}
+      format="webp"
+      loading="eager"
     />
   </div>
 </section>

@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 ---
 
 <section id="gallery">
@@ -26,32 +27,25 @@
     -->
     <div class="gallery-grid">
       <div class="gallery-item">
-        <img src="/images/work-1.jpg" alt="Garment 1"
-          onerror="this.outerHTML='<div class=\'gallery-placeholder\'>garment no. 01</div>'" />
+        <Image src="/images/work-1.jpg" alt="Garment 1" width={600} height={800} format="webp" />
       </div>
       <div class="gallery-item">
-        <img src="/images/work-2.jpg" alt="Garment 2"
-          onerror="this.outerHTML='<div class=\'gallery-placeholder\'>garment no. 02</div>'" />
+        <Image src="/images/work-2.jpg" alt="Garment 2" width={600} height={800} format="webp" />
       </div>
       <div class="gallery-item">
-        <img src="/images/work-3.jpg" alt="Garment 3"
-          onerror="this.outerHTML='<div class=\'gallery-placeholder\'>garment no. 03</div>'" />
+        <Image src="/images/work-3.jpg" alt="Garment 3" width={600} height={800} format="webp" />
       </div>
       <div class="gallery-item">
-        <img src="/images/work-4.jpg" alt="Garment 4"
-          onerror="this.outerHTML='<div class=\'gallery-placeholder\'>garment no. 04</div>'" />
+        <Image src="/images/work-4.jpg" alt="Garment 4" width={600} height={800} format="webp" />
       </div>
       <div class="gallery-item">
-        <img src="/images/work-5.jpg" alt="Garment 5"
-          onerror="this.outerHTML='<div class=\'gallery-placeholder\'>garment no. 05</div>'" />
+        <Image src="/images/work-5.jpg" alt="Garment 5" width={600} height={800} format="webp" />
       </div>
       <div class="gallery-item">
-        <img src="/images/work-6.jpg" alt="Garment 6"
-          onerror="this.outerHTML='<div class=\'gallery-placeholder\'>garment no. 06</div>'" />
+        <Image src="/images/work-6.jpg" alt="Garment 6" width={600} height={800} format="webp" />
       </div>
       <div class="gallery-item">
-        <img src="/images/work-7.jpg" alt="Garment 7"
-          onerror="this.outerHTML='<div class=\'gallery-placeholder\'>garment no. 07</div>'" />
+        <Image src="/images/work-7.jpg" alt="Garment 7" width={600} height={800} format="webp" />
       </div>
     </div>
   </div>

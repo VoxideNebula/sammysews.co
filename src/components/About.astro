@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 ---
 
 <section id="about">
@@ -9,10 +10,12 @@
           Replace with your seamstress portrait photo.
           e.g. src="/images/portrait.jpg"
         -->
-        <img
+        <Image
           src="/images/portrait.jpg"
           alt="Portrait of the seamstress"
-          onerror="this.outerHTML='<div class=\'about-image-placeholder\'></div>'"
+          width={600}
+          height={800}
+          format="webp"
         />
       </div>
       <div class="about-text fade-up fade-up-delay-2">

@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 ---
 
 <!--
@@ -7,15 +8,12 @@
 -->
 <div class="texture-strip">
   <div class="texture-strip-item">
-    <img src="/images/texture-1.jpg" alt="Fabric texture"
-      onerror="this.outerHTML='<div class=\'texture-strip-placeholder\'></div>'" />
+    <Image src="/images/texture-1.jpg" alt="Fabric texture" width={600} height={400} format="webp" />
   </div>
   <div class="texture-strip-item">
-    <img src="/images/texture-2.jpg" alt="Close-up stitching"
-      onerror="this.outerHTML='<div class=\'texture-strip-placeholder\'></div>'" />
+    <Image src="/images/texture-2.jpg" alt="Close-up stitching" width={600} height={400} format="webp" />
   </div>
   <div class="texture-strip-item">
-    <img src="/images/texture-3.jpg" alt="Fabric detail"
-      onerror="this.outerHTML='<div class=\'texture-strip-placeholder\'></div>'" />
+    <Image src="/images/texture-3.jpg" alt="Fabric detail" width={600} height={400} format="webp" />
   </div>
 </div>
